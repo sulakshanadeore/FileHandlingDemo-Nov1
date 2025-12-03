@@ -74,8 +74,6 @@ namespace FileHandlingDemo
                 w.Close();
                 fs.Close();
                 w.Dispose();
-                       
-
                 fs.Dispose();
 
             }
@@ -89,8 +87,7 @@ namespace FileHandlingDemo
 
         private void button3_Click(object sender, EventArgs e)
         {
-            FileStream fs = new FileStream("studdata.bin", FileMode.Open
-                            , FileAccess.Read);
+            FileStream fs = new FileStream("studdata.bin", FileMode.Open, FileAccess.Read);
             BinaryReader r;
             using (r = new BinaryReader(fs))
             {
@@ -106,15 +103,20 @@ namespace FileHandlingDemo
                 fs.Flush();
                 r.Close();
                 r.Dispose();
-             
+
                 fs.Close();
                 fs.Dispose();
             }
-           
+
 
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }

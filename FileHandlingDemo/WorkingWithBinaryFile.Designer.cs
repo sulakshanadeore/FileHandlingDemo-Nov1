@@ -71,9 +71,9 @@
             // 
             // button3
             // 
-            button3.Location = new Point(102, 229);
+            button3.Location = new Point(71, 229);
             button3.Name = "button3";
-            button3.Size = new Size(188, 29);
+            button3.Size = new Size(179, 29);
             button3.TabIndex = 4;
             button3.Text = "read student file";
             button3.UseVisualStyleBackColor = true;
@@ -114,7 +114,7 @@
             splitContainer1.Panel2.Controls.Add(textBox2);
             splitContainer1.Panel2.Controls.Add(button3);
             splitContainer1.Panel2.Controls.Add(button4);
-           
+            splitContainer1.Panel2.Paint += splitContainer1_Panel2_Paint;
             splitContainer1.Size = new Size(820, 305);
             splitContainer1.SplitterDistance = 413;
             splitContainer1.TabIndex = 6;
