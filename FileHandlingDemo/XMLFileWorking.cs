@@ -67,18 +67,109 @@ namespace FileHandlingDemo
 
         private void button2_Click(object sender, EventArgs e)
         {
-            XmlDocument doc=new XmlDocument();
+            XmlDocument doc = new XmlDocument();
             doc.Load("Students.xml");
-
             XmlNodeList list = doc.GetElementsByTagName("Student");
             foreach (XmlNode item in list)
             {
                 int rollno = Convert.ToInt32(item["RollNo"].InnerText);
                 string name = item["Name"].InnerText;
-                double marks= Convert.ToDouble(item["Marks"].InnerText);
+                double marks = Convert.ToDouble(item["Marks"].InnerText);
                 textBox1.Text += Environment.NewLine + rollno;
                 textBox1.Text += Environment.NewLine + name;
                 textBox1.Text += Environment.NewLine + marks;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            using (XmlWriter writer = XmlWriter.Create("schoolStud.xml"))
+            {
+                writer.WriteStartDocument();
+                writer.WriteStartElement("Students");
+
+                writer.WriteStartElement("Student");
+                writer.WriteElementString("RollNo", "11");
+                writer.WriteElementString("Name", "Gauri");
+                writer.WriteElementString("Marks", "80");
+
+                writer.WriteEndElement();
+
+                writer.WriteEndElement();
+                writer.WriteEndDocument();
+
+            }
+
+
+
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            XmlReader reader = XmlReader.Create("schoolStud.xml");
+            while (reader.Read())
+            {
+                XmlNodeType type = reader.NodeType;
+                switch (type)
+                {
+                    case XmlNodeType.None:
+                      //  textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.Element:
+                        textBox1.Text += Environment.NewLine + reader.Name;
+                        break;
+                    case XmlNodeType.Attribute:
+                        //textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.Text:
+                        textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.CDATA:
+                        //textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.EntityReference:
+                    //    textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.Entity:
+                      //  textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.ProcessingInstruction:
+                        //textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.Comment:
+                      //  textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.Document:
+                        //textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.DocumentType:
+                        //textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.DocumentFragment:
+                        //textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.Notation:
+                        //textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.Whitespace:
+                        //textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.SignificantWhitespace:
+                        //textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.EndElement:
+                        //textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.EndEntity:
+                       // textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+                    case XmlNodeType.XmlDeclaration:
+                        //textBox1.Text += Environment.NewLine + reader.Value;
+                        break;
+
+                }
 
             }
         }
